@@ -2,14 +2,13 @@
 
   <PropertyGroup>
     <TargetFrameworks>net462;net8.0</TargetFrameworks>
+    <LangVersion>14</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Moq" />
-    <PackageReference Include="xunit.abstractions" />
-    <PackageReference Include="xunit.assert" />
-    <PackageReference Include="xunit.extensibility.core" />
-    <PackageReference Include="xunit.extensibility.execution" />
+    <PackageReference Include="xunit.v3.assert" />
+    <PackageReference Include="xunit.v3.extensibility.core" />
   </ItemGroup>
 
   <ItemGroup>

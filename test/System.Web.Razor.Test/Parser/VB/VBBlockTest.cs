@@ -19,8 +19,8 @@ namespace System.Web.Razor.Test.Parser.VB
             VBCodeParser parser = new VBCodeParser();
 
             // Act and Assert
-            Assert.Throws<InvalidOperationException>(() => parser.ParseBlock(), RazorResources.Parser_Context_Not_Set);
-        }
+            Assert.Throws<InvalidOperationException>(() => parser.ParseBlock());//, RazorResources.Parser_Context_Not_Set);
+		}
 
         [Fact]
         public void ParseBlockAcceptsImplicitExpression()

@@ -6,13 +6,15 @@ using System.Globalization;
 using System.Reflection;
 using System.Threading;
 
+using Xunit.v3;
+
 namespace Microsoft.TestCommon
 {
     /// <summary>
     /// Replaces the current culture and UI culture for the test.
     /// </summary>
     [AttributeUsage(AttributeTargets.Method)]
-    public class ReplaceCultureAttribute : Xunit.Sdk.BeforeAfterTestAttribute
+    public class ReplaceCultureAttribute : BeforeAfterTestAttribute
     {
         private CultureInfo _originalCulture;
         private CultureInfo _originalUICulture;
@@ -38,7 +40,7 @@ namespace Microsoft.TestCommon
         /// </summary>
         public string UICulture { get; set; }
 
-        public override void Before(MethodInfo methodUnderTest)
+        public override void Before(MethodInfo methodUnderTest, IXunitTest test)
         {
             _originalCulture = Thread.CurrentThread.CurrentCulture;
             _originalUICulture = Thread.CurrentThread.CurrentUICulture;
@@ -47,7 +49,7 @@ namespace Microsoft.TestCommon
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(UICulture);
         }
 
-        public override void After(MethodInfo methodUnderTest)
+        public override void After(MethodInfo methodUnderTest, IXunitTest test)
         {
             Thread.CurrentThread.CurrentCulture = _originalCulture;
             Thread.CurrentThread.CurrentUICulture = _originalUICulture;

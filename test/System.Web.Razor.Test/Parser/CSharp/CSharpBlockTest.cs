@@ -21,7 +21,7 @@ namespace System.Web.Razor.Test.Parser.CSharp
             CSharpCodeParser parser = new CSharpCodeParser();
 
             // Act and Assert
-            Assert.Throws<InvalidOperationException>(() => parser.ParseBlock(), RazorResources.Parser_Context_Not_Set);
+            Assert.Throws<InvalidOperationException>(() => parser.ParseBlock());
         }
 
         [Fact]

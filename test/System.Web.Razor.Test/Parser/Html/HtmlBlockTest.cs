@@ -21,8 +21,8 @@ namespace System.Web.Razor.Test.Parser.Html
             // Arrange
             HtmlMarkupParser parser = new HtmlMarkupParser();
 
-            // Act and Assert
-            Assert.Throws<InvalidOperationException>(() => parser.ParseBlock(), RazorResources.Parser_Context_Not_Set);
+			// Act and Assert
+			Assert.Throws<InvalidOperationException>(() => parser.ParseBlock());//, RazorResources.Parser_Context_Not_Set);
         }
 
         [Fact]

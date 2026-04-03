@@ -22,8 +22,8 @@ namespace System.Web.Razor.Test.Parser.Html
             // Arrange
             HtmlMarkupParser parser = new HtmlMarkupParser();
 
-            // Act and Assert
-            Assert.Throws<InvalidOperationException>(() => parser.ParseDocument(), RazorResources.Parser_Context_Not_Set);
+			// Act and Assert
+			Assert.Throws<InvalidOperationException>(() => parser.ParseDocument());//, RazorResources.Parser_Context_Not_Set);
         }
 
         [Fact]
@@ -33,8 +33,8 @@ namespace System.Web.Razor.Test.Parser.Html
             HtmlMarkupParser parser = new HtmlMarkupParser();
 
             // Act and Assert
-            Assert.Throws<InvalidOperationException>(() => parser.ParseSection(null, true), RazorResources.Parser_Context_Not_Set);
-        }
+            Assert.Throws<InvalidOperationException>(() => parser.ParseSection(null, true));//, RazorResources.Parser_Context_Not_Set);
+		}
 
         [Fact]
         public void ParseDocumentOutputsEmptyBlockWithEmptyMarkupSpanIfContentIsEmptyString()

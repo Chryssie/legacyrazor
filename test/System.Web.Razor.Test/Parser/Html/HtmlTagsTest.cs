@@ -110,7 +110,7 @@ namespace System.Web.Razor.Test.Parser.Html
         }
 
         [Theory]
-        [PropertyData("VoidElementNames")]
+        [MemberData(nameof(VoidElementNames))]
         public void VoidElementFollowedByContent(string tagName)
         {
             ParseBlockTest("<" + tagName + ">foo",
@@ -120,7 +120,7 @@ namespace System.Web.Razor.Test.Parser.Html
         }
 
         [Theory]
-        [PropertyData("VoidElementNames")]
+        [MemberData(nameof(VoidElementNames))]
         public void VoidElementFollowedByOtherTag(string tagName)
         {
             ParseBlockTest("<" + tagName + "><other>foo",
@@ -130,7 +130,7 @@ namespace System.Web.Razor.Test.Parser.Html
         }
 
         [Theory]
-        [PropertyData("VoidElementNames")]
+        [MemberData(nameof(VoidElementNames))]
         public void VoidElementFollowedByCloseTag(string tagName)
         {
             ParseBlockTest("<" + tagName + "> </" + tagName + ">foo",
@@ -140,8 +140,8 @@ namespace System.Web.Razor.Test.Parser.Html
         }
 
         [Theory]
-        [PropertyData("VoidElementNames")]
-        public void IncompleteVoidElementEndTag(string tagName)
+		[MemberData(nameof(VoidElementNames))]
+		public void IncompleteVoidElementEndTag(string tagName)
         {
             ParseBlockTest("<" + tagName + "></" + tagName,
                 new MarkupBlock(

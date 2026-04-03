@@ -1,7 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net462</TargetFramework>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>14</LangVersion>
+    <OutputType>Exe</OutputType>
     <RootNamespace>System.Web</RootNamespace>
   </PropertyGroup>
 
@@ -17,9 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="xunit" />
-    <PackageReference Include="xunit.extensibility.execution" />
-    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="xunit.v3" />
   </ItemGroup>
 
   <ItemGroup>

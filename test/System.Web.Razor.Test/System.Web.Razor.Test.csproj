@@ -1,7 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net462</TargetFramework>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>14</LangVersion>
+    <OutputType>Exe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,9 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="xunit" />
-    <PackageReference Include="xunit.extensibility.execution" />
-    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="xunit.v3" />
   </ItemGroup>
 
   <ItemGroup Label="TestFiles">

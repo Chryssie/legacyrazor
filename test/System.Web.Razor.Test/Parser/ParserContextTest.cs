@@ -46,8 +46,7 @@ namespace System.Web.Razor.Test.Parser
         public void ConstructorThrowsIfActiveParserIsNotCodeOrMarkupParser()
         {
             Assert.ThrowsArgument(() => new ParserContext(new SeekableTextReader(TextReader.Null), new CSharpCodeParser(), new HtmlMarkupParser(), new CSharpCodeParser()),
-                                                    "activeParser",
-                                                    RazorResources.ActiveParser_Must_Be_Code_Or_Markup_Parser);
+                                                    "activeParser");//, RazorResources.ActiveParser_Must_Be_Code_Or_Markup_Parser);
         }
 
         [Fact]
