@@ -1,0 +1,136 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="CodeAnalysis" />
+    <BuildType Name="Debug" />
+    <BuildType Name="Release" />
+  </Configurations>
+  <Folder Name="/.azuredevops/">
+    <File Path=".azuredevops/dependabot.yml" />
+  </Folder>
+  <Folder Name="/.config/">
+    <File Path=".config/CredScanSuppressions.json" />
+    <File Path=".config/tsaoptions.json" />
+  </Folder>
+  <Folder Name="/.nuget/">
+    <File Path=".nuget/packages.config" />
+  </Folder>
+  <Folder Name="/eng/">
+    <File Path="eng/GetXCopyMSBuild.ps1" />
+  </Folder>
+  <Folder Name="/eng/NewFolder1/">
+    <File Path="eng/templates/default-build.yml" />
+  </Folder>
+  <Folder Name="/packages/">
+    <File Path="packages/repositories.config" />
+  </Folder>
+  <Folder Name="/Solution items/">
+    <File Path=".appveyor.yml" />
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+    <File Path=".travis.yml" />
+    <File Path="azure-pipelines-public.yml" />
+    <File Path="azure-pipelines.yml" />
+    <File Path="build.cmd" />
+    <File Path="CODE-OF-CONDUCT.md" />
+    <File Path="CONTRIBUTING.md" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Build.targets" />
+    <File Path="es-metadata.yml" />
+    <File Path="global.json" />
+    <File Path="LICENSE.txt" />
+    <File Path="NuGet.Config" />
+    <File Path="README.md" />
+    <File Path="Runtime.msbuild" />
+    <File Path="SECURITY.md" />
+    <File Path="Settings.StyleCop" />
+  </Folder>
+  <Folder Name="/src/">
+    <File Path="src/CodeAnalysisDictionary.xml" />
+    <File Path="src/CommonAssemblyInfo.cs" />
+    <File Path="src/CommonAssemblyInfo.vb" />
+    <File Path="src/CommonResources.Designer.cs" />
+    <File Path="src/CommonResources.resx" />
+    <File Path="src/Directory.Build.props" />
+    <File Path="src/GlobalSuppressions.cs" />
+    <File Path="src/Settings.StyleCop" />
+    <File Path="src/Strict.ruleset" />
+    <File Path="src/WebHelpers.ruleset" />
+    <Project Path="src/Microsoft.AspNet.Facebook/Microsoft.AspNet.Facebook.csproj" Id="821a136c-7c6f-44c6-a9e6-c39b5bfb1483" />
+    <Project Path="src/Microsoft.Web.Helpers/Microsoft.Web.Helpers.csproj" Id="0c7ce809-0f72-4c19-8c64-d6573e4d9521" />
+    <Project Path="src/Microsoft.Web.Mvc/Microsoft.Web.Mvc.csproj" Id="d3cf7430-6da4-42b0-bd90-ca39d16687b2" />
+    <Project Path="src/Microsoft.Web.WebPages.OAuth/Microsoft.Web.WebPages.OAuth.csproj" Id="4cbfc7d3-1600-4ce5-bc6b-ac7bc2d6f853" />
+    <Project Path="src/System.Net.Http.Formatting.ns1_3/System.Net.Http.Formatting.ns1_3.csproj" />
+    <Project Path="src/System.Net.Http.Formatting.ns2_0/System.Net.Http.Formatting.ns2_0.csproj" />
+    <Project Path="src/System.Net.Http.Formatting/System.Net.Http.Formatting.csproj" Id="668e9021-ce84-49d9-98fb-df125a9fcdb0" />
+    <Project Path="src/System.Web.Cors/System.Web.Cors.csproj" Id="43c1b979-d593-4a32-bb3a-4316f1c66d66" />
+    <Project Path="src/System.Web.Helpers/System.Web.Helpers.csproj" Id="9b7e3740-6161-4548-833c-4bbca43b970e" />
+    <Project Path="src/System.Web.Http.Cors/System.Web.Http.Cors.csproj" Id="25def6f6-7f99-4eb7-91ed-5181a346afe1" />
+    <Project Path="src/System.Web.Http.Owin/System.Web.Http.Owin.csproj" Id="66dd7cd7-c68f-4d0e-9f3d-3b58c49d1467" />
+    <Project Path="src/System.Web.Http.SelfHost/System.Web.Http.SelfHost.csproj" Id="66492e69-ce4c-4fb1-9b1f-88dee09d06f1" />
+    <Project Path="src/System.Web.Http.SignalR/System.Web.Http.SignalR.csproj" Id="8a607ac9-e7dd-4b74-a0b1-47fc95b9838b" />
+    <Project Path="src/System.Web.Http.Tracing/System.Web.Http.Tracing.csproj" Id="6e81ef98-8f5c-4eed-8b37-456991ca56fd" />
+    <Project Path="src/System.Web.Http.WebHost/System.Web.Http.WebHost.csproj" Id="a0187bc2-8325-4bb2-8697-7f955cf4173e" />
+    <Project Path="src/System.Web.Http/System.Web.Http.csproj" Id="ddc1ce0c-486e-4e35-bb3b-eab61f8f9440" />
+    <Project Path="src/System.Web.Mvc/System.Web.Mvc.csproj" Id="3d3ffd8a-624d-4e9b-954b-e1c105507975" />
+    <Project Path="src/System.Web.Razor/System.Web.Razor.csproj" Id="8f18041b-9410-4c36-a9c5-067813df5f31" />
+    <Project Path="src/System.Web.WebPages.Administration/System.Web.WebPages.Administration.csproj" Id="c23f02fc-4538-43f5-abba-38ba069aea8f" />
+    <Project Path="src/System.Web.WebPages.Deployment/System.Web.WebPages.Deployment.csproj" Id="22babb60-8f02-4027-affc-acf069954536" />
+    <Project Path="src/System.Web.WebPages.Razor/System.Web.WebPages.Razor.csproj" Id="0939b11a-fe4e-4ba1-8ad6-d97741ee314f" />
+    <Project Path="src/System.Web.WebPages/System.Web.WebPages.csproj" Id="76efa9c5-8d7e-4fdf-b710-e20f8b6b00d2" />
+    <Project Path="src/WebApiHelpPage/VB/WebApiHelpPageVB.vbproj" Id="22075d5a-e9a1-4e2d-aba7-8e7cbf2a049e" />
+    <Project Path="src/WebApiHelpPage/WebApiHelpPage.csproj" Id="fedfe6ca-8282-4c5b-a756-e97189690982" />
+    <Project Path="src/WebMatrix.Data/WebMatrix.Data.csproj" Id="4d39baaf-8a96-473e-ab79-c8a341885137" />
+    <Project Path="src/WebMatrix.WebData/WebMatrix.WebData.csproj" Id="55a15f40-1435-4248-a7f2-2a146bb83586" />
+  </Folder>
+  <Folder Name="/test/">
+    <File Path="test/Directory.Build.props" />
+    <File Path="test/Directory.Build.targets" />
+    <File Path="test/Settings.StyleCop" />
+    <Project Path="test/Microsoft.AspNet.Facebook.Test/Microsoft.AspNet.Facebook.Test.csproj" Id="c3bef382-c7c4-454d-b017-1eac03e9a82c" />
+    <Project Path="test/Microsoft.TestCommon/Microsoft.TestCommon.csproj" />
+    <Project Path="test/Microsoft.Web.Helpers.Test/Microsoft.Web.Helpers.Test.csproj" Id="2c653a66-8159-4a41-954f-a67915dfda87" />
+    <Project Path="test/Microsoft.Web.Mvc.Test/Microsoft.Web.Mvc.Test.csproj" Id="6c28da70-60f1-4442-967f-591bf3962ec5" />
+    <Project Path="test/Microsoft.Web.WebPages.OAuth.Test/Microsoft.Web.WebPages.OAuth.Test.csproj" Id="694c6edf-ea52-438f-b745-82b025ecc0e7" />
+    <Project Path="test/System.Net.Http.Formatting.ns1_3.Test/System.Net.Http.Formatting.ns1_3.Test.csproj" />
+    <Project Path="test/System.Net.Http.Formatting.ns2_0.Test/System.Net.Http.Formatting.ns2_0.Test.csproj" />
+    <Project Path="test/System.Net.Http.Formatting.Test/System.Net.Http.Formatting.Test.csproj" Id="7af77741-9158-4d5f-8782-8f21fadf025f" />
+    <Project Path="test/System.Web.Cors.Test/System.Web.Cors.Test.csproj" Id="bf07e947-120d-4e93-93da-a4bf121753ea" />
+    <Project Path="test/System.Web.Helpers.Test/System.Web.Helpers.Test.csproj" Id="d3313bdf-8071-4ac8-9d98-abf7f9e88a57" />
+    <Project Path="test/System.Web.Http.Cors.Test/System.Web.Http.Cors.Test.csproj" Id="1e89a3e9-0a7f-418f-b4be-6e38a6315373" />
+    <Project Path="test/System.Web.Http.Integration.Test/System.Web.Http.Integration.Test.csproj" Id="3267dfc6-b34d-4011-bc0f-d3b56af6f608" />
+    <Project Path="test/System.Web.Http.Owin.Test/System.Web.Http.Owin.Test.csproj" Id="c19267dd-3984-430c-ae18-4034f85de4e5" />
+    <Project Path="test/System.Web.Http.SelfHost.Test/System.Web.Http.SelfHost.Test.csproj" Id="7f29ee87-6a63-43c6-b7ff-74dd06815830" />
+    <Project Path="test/System.Web.Http.SignalR.Test/System.Web.Http.SignalR.Test.csproj" Id="e22245af-d5e1-46f6-b443-c886983ec50c" />
+    <Project Path="test/System.Web.Http.Test/System.Web.Http.Test.csproj" Id="7f2c796f-43b2-4f8f-abff-a154ec8aafa1" />
+    <Project Path="test/System.Web.Http.Tracing.Test/System.Web.Http.Tracing.Test.csproj" Id="f87fd911-4a97-4057-8eae-1cb96b9a1937" />
+    <Project Path="test/System.Web.Http.WebHost.Test/System.Web.Http.WebHost.Test.csproj" Id="ea62944f-bd25-4730-9405-9be8ff5beacd" />
+    <Project Path="test/System.Web.Mvc.Test/System.Web.Mvc.Test.csproj" Id="8ac2a2e4-2f11-4d40-a887-62e2583a65e6" />
+    <Project Path="test/System.Web.Razor.Test/System.Web.Razor.Test.csproj" Id="0bb62a1d-e6b5-49fa-9e3c-6af679a66dfe" />
+    <Project Path="test/System.Web.WebPages.Administration.Test/System.Web.WebPages.Administration.Test.csproj" Id="21c729d6-ecf8-47ef-a236-7c6a4272eaf0" />
+    <Project Path="test/System.Web.WebPages.Deployment.Test/System.Web.WebPages.Deployment.Test.csproj" Id="268dee9d-f323-4a00-8ed8-3784388c3e3a" />
+    <Project Path="test/System.Web.WebPages.Razor.Test/System.Web.WebPages.Razor.Test.csproj" Id="66a74f3c-a106-4c1e-baa0-001908fea2ca" />
+    <Project Path="test/System.Web.WebPages.Test/System.Web.WebPages.Test.csproj" Id="0f4870db-a799-4dba-99df-0d74bb52fec2" />
+    <Project Path="test/WebApiHelpPage.Test/WebApiHelpPage.Test.csproj" Id="291ef478-bf24-4935-bc78-e0dccd0c9a1b" />
+    <Project Path="test/WebApiHelpPage.VB.Test/WebApiHelpPage.VB.Test.csproj" Id="41d5691f-2720-44a0-9185-eefe928d2679" />
+    <Project Path="test/WebMatrix.Data.Test/WebMatrix.Data.Test.csproj" Id="e2d008a9-4d1d-4f6b-8325-4ed717d6ea0a" />
+    <Project Path="test/WebMatrix.WebData.Test/WebMatrix.WebData.Test.csproj" Id="cd48eb41-92a5-4628-a0f7-6a43df58827e" />
+  </Folder>
+  <Folder Name="/tools/">
+    <File Path="tools/35MSSharedLib1024.snk" />
+    <File Path="tools/SkipStrongNames.xml" />
+    <File Path="tools/WebStack.settings.targets" />
+    <File Path="tools/WebStack.StyleCop.targets" />
+    <File Path="tools/WebStack.targets" />
+    <File Path="tools/WebStack.tasks.targets" />
+    <File Path="tools/WebStack.testing.targets" />
+  </Folder>
+  <Folder Name="/tools/src/">
+    <Project Path="tools/src/Microsoft.Web.FxCop/Microsoft.Web.FxCop.csproj" Id="f439d4e6-3fac-4c30-9585-6d258133a2bf">
+      <BuildType Solution="CodeAnalysis|*" Project="Debug" />
+    </Project>
+  </Folder>
+  <Folder Name="/tools/vslicense/">
+    <File Path="tools/vslicense/dotnet-library-license.htm" />
+    <File Path="tools/vslicense/dotnet-library-license.md" />
+  </Folder>
+</Solution>

@@ -1,5 +1,16 @@
 # ASP.NET MVC, Web API, Web Pages, and Razor
 
+## Fork Note:
+
+This repo has the solutions converted to newer formats without changing target versions. Theoretically, these should produce the same outputs as the original [AspNetWebStack](https://github.com/aspnet/AspNetWebStack) repository, however, I cannot guarantee that this is the case.
+
+The following changes made were:
+- Replace the `*.sln` files with `*.slnf` files backed by the new `AspNetWebStack.slnx` file.
+  - Every file had the text `Runtime.sln` replaced with `Runtime.slnf`. Most of the files were MSBuild files (ie: `*.csproj`, etc), however, there was one `*.cs` file which was looking for the `Runtime.sln`.
+  - The new `AspNetWebStack.slnx` includes loose files in the repo in appropriate solution folders.
+- Convert all projects to SDK-style projects.
+  - As part of this change I manually deleted `<Reference>` items that were pointing to the `packages` as the legacy upgrade assistant did not seem to correctly identify these and delete them.
+
 ## Note: This repo is for ASP.NET MVC 5.x, Web API 2.x, and Web Pages 3.x. For ASP.NET Core MVC, check the [AspNetCore repo](https://github.com/aspnet/AspNetCore).
 
 ASP.NET MVC is a web framework that gives you a powerful, patterns-based way to build dynamic websites and Web APIs. ASP.NET MVC enables a clean separation of concerns and gives you full control over markup.

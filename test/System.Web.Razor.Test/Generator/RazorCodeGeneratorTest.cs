@@ -200,7 +200,7 @@ namespace System.Web.Razor.Test.Generator
         [Conditional("GENERATE_BASELINES")]
         private void WriteBaseline(string baselineFile, string output)
         {
-            string root = RecursiveFind("Runtime.sln", Path.GetFullPath("."));
+            string root = RecursiveFind("Runtime.slnf", Path.GetFullPath("."));
             string baselinePath = Path.Combine(root, baselineFile);
 
             // Update baseline

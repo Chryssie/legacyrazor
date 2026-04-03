@@ -38,7 +38,7 @@
 
   <Target Name="Clean">
     <MSBuild
-        Projects="Runtime.sln"
+        Projects="Runtime.slnf"
         Targets="Clean"
         Properties="Configuration=$(Configuration);VisualStudioVersion=$(VisualStudioVersion)" />
     <RemoveDir Directories="bin\$(Configuration)" />
@@ -71,7 +71,7 @@
                   Testing_NetStandard1_3=%(_Testing_NetStandard1_3.Identity)"
       RemoveProperties="Platform" />
 
-    <MSBuild Projects="Runtime.sln" Targets="Restore"
+    <MSBuild Projects="Runtime.slnf" Targets="Restore"
       BuildInParallel="$(RestoreInParallel)"
       Properties="Configuration=$(Configuration);CodeAnalysis=$(CodeAnalysis);StyleCopEnabled=$(StyleCopEnabled);
                   RestorePackagesConfig=true;VisualStudioVersion=$(VisualStudioVersion)" />
@@ -108,7 +108,7 @@
       RemoveProperties="Platform" />
 
     <MSBuild
-        Projects="Runtime.sln"
+        Projects="Runtime.slnf"
         BuildInParallel="$(BuildInParallel)"
         Targets="Build"
         Properties="Configuration=$(Configuration);CodeAnalysis=$(CodeAnalysis);StyleCopEnabled=$(StyleCopEnabled);

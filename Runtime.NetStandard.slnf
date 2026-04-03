@@ -1,6 +1,6 @@
 {
   "solution": {
-    "path": "Runtime.sln",
+    "path": "AspNetWebStack.slnx",
     "projects": [
       "src\\System.Net.Http.Formatting.ns1_3\\System.Net.Http.Formatting.ns1_3.csproj",
       "src\\System.Net.Http.Formatting.ns2_0\\System.Net.Http.Formatting.ns2_0.csproj",
