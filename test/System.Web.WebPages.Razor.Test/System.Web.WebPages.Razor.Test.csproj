@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <GlobalPackageReference Remove="Polysharp" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\src\System.Web.Razor\System.Web.Razor.csproj" />
     <ProjectReference Include="..\..\src\System.Web.WebPages.Razor\System.Web.WebPages.Razor.csproj" />
     <ProjectReference Include="..\Microsoft.TestCommon\Microsoft.TestCommon.csproj" />

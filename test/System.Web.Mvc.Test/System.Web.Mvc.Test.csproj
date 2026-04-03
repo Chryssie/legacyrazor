@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\System.Web.Mvc\System.Web.Mvc.csproj" />
+    <ProjectReference Include="..\..\src\System.Web.Mvc.Razor\System.Web.Mvc.Razor.csproj" />
     <ProjectReference Include="..\Microsoft.TestCommon\Microsoft.TestCommon.csproj" />
     <ProjectReference Include="..\System.Web.Razor.Test\System.Web.Razor.Test.csproj" />
   </ItemGroup>
