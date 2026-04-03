@@ -16,7 +16,7 @@ namespace System.Web.Mvc.Razor.Test
 
             Assert.Equal("foo.cshtml", host.VirtualPath);
             Assert.Equal("bar", host.PhysicalPath);
-            Assert.Equal(typeof(WebViewPage).FullName, host.DefaultBaseClass);
+            Assert.Equal(MvcWebPageRazorHost.DefaultDefaultPageBaseClass, host.DefaultBaseClass);
         }
 
         [Fact]

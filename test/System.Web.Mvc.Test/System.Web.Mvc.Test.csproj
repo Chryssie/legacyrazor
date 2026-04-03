@@ -1,87 +1,40 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>Library</OutputType>
-    <RootNamespace>System.Web</RootNamespace>
-    <OutputPath>..\..\bin\$(Configuration)\Test\</OutputPath>
-    <DefineConstants>$(DefineConstants);ASPNETMVC</DefineConstants>
-    <NoWarn>0618</NoWarn>
-    <Configurations>CodeAnalysis;Debug;Release</Configurations>
-  </PropertyGroup>
+
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <RootNamespace>System.Web</RootNamespace>
   </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Data.Linq" />
-    <Reference Include="System.Runtime.Caching" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Extensions" />
+    <ProjectReference Include="..\..\src\System.Web.Mvc\System.Web.Mvc.csproj" />
+    <GlobalPackageReference Remove="Polysharp" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="..\Common\AttributeListTest.cs">
-      <Link>Common\AttributeListTest.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\RouteFactoryAttributeTests.cs">
-      <Link>Routing\RouteFactoryAttributeTests.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\RoutePrecedenceTests.cs">
-      <Link>Routing\RoutePrecedenceTests.cs</Link>
-    </Compile>
+    <ProjectReference Include="..\..\src\System.Web.Mvc\System.Web.Mvc.csproj" />
+    <ProjectReference Include="..\Microsoft.TestCommon\Microsoft.TestCommon.csproj" />
+    <ProjectReference Include="..\System.Web.Razor.Test\System.Web.Razor.Test.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="xunit" Version="2.4.2" />
+    <PackageReference Include="xunit.extensibility.execution" Version="2.4.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="..\Common\Routing\DirectRouteBuilderTests.cs">
-      <Link>Routing\DirectRouteBuilderTests.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\RouteConstraintsTests.cs">
-      <Link>Routing\RouteConstraintsTests.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\DefaultInlineConstraintResolverTest.cs">
-      <Link>Routing\DefaultInlineConstraintResolverTest.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\InlineRouteTemplateParserTests.cs">
-      <Link>Routing\InlineRouteTemplateParserTests.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\SubRouteCollectionTest.cs">
-      <Link>Routing\SubRouteCollectionTest.cs</Link>
-    </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\System.Web.Http\System.Web.Http.csproj" />
-    <ProjectReference Include="..\..\src\System.Web.Mvc\System.Web.Mvc.csproj" />
-    <ProjectReference Include="..\..\src\System.Web.Razor\System.Web.Razor.csproj" />
-    <ProjectReference Include="..\..\src\System.Web.WebPages.Razor\System.Web.WebPages.Razor.csproj" />
-    <ProjectReference Include="..\..\src\System.Web.WebPages\System.Web.WebPages.csproj" />
-    <ProjectReference Include="..\Microsoft.TestCommon\Microsoft.TestCommon.csproj" />
-    <ProjectReference Include="..\System.Web.Razor.Test\System.Web.Razor.Test.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
+
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Castle.Core" Version="5.1.1" />
-    <PackageReference Include="Moq" Version="4.18.4" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="xunit" Version="2.4.2" />
-    <PackageReference Include="xunit.abstractions" Version="2.0.3" />
-    <PackageReference Include="xunit.analyzers" Version="1.1.0" />
-    <PackageReference Include="xunit.assert" Version="2.4.2" />
-    <PackageReference Include="xunit.core" Version="2.4.2" />
-    <PackageReference Include="xunit.extensibility.core" Version="2.4.2" />
-    <PackageReference Include="xunit.extensibility.execution" Version="2.4.2" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5" />
-  </ItemGroup>
+
 </Project>

@@ -12,13 +12,15 @@ namespace System.Web.Mvc.Razor
     [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "WebPage", Justification = "The class name is derived from the name of the base type")]
     public class MvcWebPageRazorHost : WebPageRazorHost
     {
+        internal const string DefaultDefaultPageBaseClass = "System.Web.Mvc.WebViewPage";
+
         [SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = "The NamespaceImports property should not be virtual. This is a temporary fix.")]
         public MvcWebPageRazorHost(string virtualPath, string physicalPath)
             : base(virtualPath, physicalPath)
         {
-            RegisterSpecialFile(RazorViewEngine.ViewStartFileName, typeof(ViewStartPage));
+            RegisterSpecialFile("_ViewStart", "System.Web.Mvc.ViewStartPage");
 
-            DefaultPageBaseClass = typeof(WebViewPage).FullName;
+            DefaultPageBaseClass = "System.Web.Mvc.WebViewPage";
 
             // REVIEW get rid of the namespace import to not force additional references in default MVC projects
             GetRidOfNamespace("System.Web.WebPages.Html");

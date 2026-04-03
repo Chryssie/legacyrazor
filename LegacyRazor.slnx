@@ -1,0 +1,25 @@
+<Solution>
+  <Folder Name="/Solution items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+    <File Path="CODE-OF-CONDUCT.md" />
+    <File Path="CONTRIBUTING.md" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Build.targets" />
+    <File Path="LICENSE.txt" />
+    <File Path="README.md" />
+    <File Path="SECURITY.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/System.Web.Mvc/System.Web.Mvc.csproj" />
+    <Project Path="src/System.Web.Razor/System.Web.Razor.csproj" />
+    <Project Path="src/System.Web.WebPages.Razor/System.Web.WebPages.Razor.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/Microsoft.TestCommon/Microsoft.TestCommon.csproj" />
+    <Project Path="test/System.Web.Mvc.Test/System.Web.Mvc.Test.csproj" />
+    <Project Path="test/System.Web.Razor.Test/System.Web.Razor.Test.csproj" />
+    <Project Path="test/System.Web.WebPages.Razor.Test/System.Web.WebPages.Razor.Test.csproj" />
+  </Folder>
+</Solution>

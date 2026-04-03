@@ -1,56 +1,43 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>Library</OutputType>
-    <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
-    <RunCodeAnalysis>$(CodeAnalysis)</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\Strict.ruleset</CodeAnalysisRuleSet>
-    <DefineConstants>$(DefineConstants);ASPNETWEBPAGES</DefineConstants>
-    <NoWarn>1591</NoWarn>
-    <Configurations>CodeAnalysis;Debug;Release</Configurations>
-  </PropertyGroup>
+
   <PropertyGroup>
     <TargetFramework>net45</TargetFramework>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <RootNamespace>System.Web.WebPages.Razor</RootNamespace>
   </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Web" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\CommonAssemblyInfo.cs">
-      <Link>Properties\CommonAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\CommonResources.Designer.cs">
-      <Link>Common\CommonResources.Designer.cs</Link>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CommonResources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="..\GlobalSuppressions.cs">
-      <Link>Common\GlobalSuppressions.cs</Link>
-    </Compile>
-    <Compile Update="Resources\RazorWebResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RazorWebResources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\System.Web.WebPages\System.Web.WebPages.csproj" />
     <ProjectReference Include="..\System.Web.Razor\System.Web.Razor.csproj" />
   </ItemGroup>
+
   <ItemGroup>
-    <EmbeddedResource Include="..\CommonResources.resx">
-      <Link>Common\CommonResources.resx</Link>
+    <InternalsVisibleTo Include="System.Web.WebPages.Razor.Test" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Common\CommonResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommonResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\RazorWebResources.Designer.cs">
+      <DependentUpon>RazorWebResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Common\CommonResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CommonResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CustomToolNamespace>Microsoft.Internal.Web.Utils</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\RazorWebResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>RazorWebResources.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <CodeAnalysisDictionary Include="..\CodeAnalysisDictionary.xml" />
-  </ItemGroup>
+
 </Project>

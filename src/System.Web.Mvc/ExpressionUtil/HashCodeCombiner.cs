@@ -15,18 +15,6 @@ namespace System.Web.Mvc.ExpressionUtil
             get { return _combinedHash64.GetHashCode(); }
         }
 
-        public void AddFingerprint(ExpressionFingerprint fingerprint)
-        {
-            if (fingerprint != null)
-            {
-                fingerprint.AddToHashCodeCombiner(this);
-            }
-            else
-            {
-                AddInt32(0);
-            }
-        }
-
         public void AddEnumerable(IEnumerable e)
         {
             if (e == null)

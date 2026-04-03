@@ -15,7 +15,7 @@ namespace System.Web.WebPages.Razor
     {
         private const string AppCodeDir = "App_Code";
         private const string HttpContextAccessorName = "Context";
-        private static readonly string _helperPageBaseType = typeof(HelperPage).FullName;
+        private static readonly string _helperPageBaseType = "System.Web.WebPages.HelperPage";
 
         [SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = "The code path is safe, it is a property setter and not dependent on other state")]
         public WebCodeRazorHost(string virtualPath)

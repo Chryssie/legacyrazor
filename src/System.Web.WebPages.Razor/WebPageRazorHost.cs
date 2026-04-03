@@ -8,12 +8,12 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Web.Compilation;
-using System.Web.Hosting;
+//using System.Web.Compilation;
+//using System.Web.Hosting;
 using System.Web.Razor;
 using System.Web.Razor.Generator;
 using System.Web.Razor.Parser;
-using System.Web.WebPages.Instrumentation;
+//using System.Web.WebPages.Instrumentation;
 using System.Web.WebPages.Razor.Resources;
 using Microsoft.Internal.Web.Utils;
 
@@ -36,9 +36,9 @@ namespace System.Web.WebPages.Razor
         private const string ApplicationStartFileName = "_AppStart";
         private const string PageStartFileName = "_PageStart";
 
-        internal static readonly string FallbackApplicationTypeName = typeof(HttpApplication).FullName;
-        internal static readonly string PageBaseClass = typeof(WebPage).FullName;
-        internal static readonly string TemplateTypeName = typeof(HelperResult).FullName;
+        internal static readonly string FallbackApplicationTypeName = "System.Web.HttpApplication";
+        internal static readonly string PageBaseClass = "System.Web.WebPages.WebPage";
+        internal static readonly string TemplateTypeName = "System.Web.WebPages.HelperResult";
 
         private static ConcurrentDictionary<string, object> _importedNamespaces = new ConcurrentDictionary<string, object>();
         private readonly Dictionary<string, string> _specialFileBaseTypes = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
@@ -65,8 +65,8 @@ namespace System.Web.WebPages.Razor
             NamespaceImports.Add("System.Web.WebPages");
             NamespaceImports.Add("System.Web.WebPages.Html");
 
-            RegisterSpecialFile(ApplicationStartFileName, typeof(ApplicationStartPage));
-            RegisterSpecialFile(PageStartFileName, typeof(StartPage));
+            RegisterSpecialFile(ApplicationStartFileName, "System.Web.WebPages.ApplicationStartPage");
+            RegisterSpecialFile(PageStartFileName, "System.Web.WebPages");
             DefaultNamespace = WebDefaultNamespace;
             GeneratedClassContext = new GeneratedClassContext(GeneratedClassContext.DefaultExecuteMethodName,
                                                               GeneratedClassContext.DefaultWriteMethodName,
@@ -104,7 +104,7 @@ namespace System.Web.WebPages.Razor
             PhysicalPath = physicalPath;
             DefaultClassName = GetClassName(VirtualPath);
             CodeLanguage = GetCodeLanguage();
-            EnableInstrumentation = new InstrumentationService().IsAvailable;
+            //EnableInstrumentation = new InstrumentationService().IsAvailable;
         }
 
         public override RazorCodeLanguage CodeLanguage
@@ -159,7 +159,8 @@ namespace System.Web.WebPages.Razor
 
         internal string GlobalAsaxTypeName
         {
-            get { return _globalAsaxTypeName ?? (HostingEnvironment.IsHosted ? BuildManager.GetGlobalAsaxType().FullName : FallbackApplicationTypeName); }
+            //get { return _globalAsaxTypeName ?? (HostingEnvironment.IsHosted ? BuildManager.GetGlobalAsaxType().FullName : FallbackApplicationTypeName); }
+            get { return _globalAsaxTypeName ?? FallbackApplicationTypeName; }
             set { _globalAsaxTypeName = value; }
         }
 
@@ -176,7 +177,7 @@ namespace System.Web.WebPages.Razor
         {
             get
             {
-                MapPhysicalPath();
+                //MapPhysicalPath();
                 return _physicalPath;
             }
             set { _physicalPath = value; }
@@ -297,17 +298,17 @@ namespace System.Web.WebPages.Razor
             return RazorCodeLanguage.GetLanguageByExtension(extension);
         }
 
-        private void MapPhysicalPath()
-        {
-            if (_physicalPath == null && HostingEnvironment.IsHosted)
-            {
-                string path = HostingEnvironment.MapPath(VirtualPath);
-                if (!String.IsNullOrEmpty(path) && File.Exists(path))
-                {
-                    _physicalPath = path;
-                }
-            }
-        }
+        //private void MapPhysicalPath()
+        //{
+        //    if (_physicalPath == null && HostingEnvironment.IsHosted)
+        //    {
+        //        string path = HostingEnvironment.MapPath(VirtualPath);
+        //        if (!String.IsNullOrEmpty(path) && File.Exists(path))
+        //        {
+        //            _physicalPath = path;
+        //        }
+        //    }
+        //}
 
         public override void PostProcessGeneratedCode(CodeGeneratorContext context)
         {

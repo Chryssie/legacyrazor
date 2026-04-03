@@ -1,217 +1,33 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>Library</OutputType>
-    <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
-    <RunCodeAnalysis>$(CodeAnalysis)</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>..\Strict.ruleset</CodeAnalysisRuleSet>
-    <DefineConstants>$(DefineConstants);ASPNETMVC</DefineConstants>
-    <NoWarn>1591</NoWarn>
-    <BaseAddress>1609891840</BaseAddress>
-    <Configurations>CodeAnalysis;Debug;Release</Configurations>
-  </PropertyGroup>
+
   <PropertyGroup>
     <TargetFramework>net45</TargetFramework>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <RootNamespace>System.Web.Mvc</RootNamespace>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.configuration" />
-    <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Data.Linq" />
-    <Reference Include="System.Runtime.Caching" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Routing" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\CommonAssemblyInfo.cs">
-      <Link>Properties\CommonAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\AttributeList.cs">
-      <Link>Common\AttributeList.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\DictionaryExtensions.cs">
-      <Link>Common\DictionaryExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\ListWrapperCollection.cs">
-      <Link>Common\ListWrapperCollection.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\PrefixContainer.cs">
-      <Link>Common\PrefixContainer.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\DirectRouteBuilder.cs">
-      <Link>Routing\DirectRouteBuilder.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\DirectRouteFactoryContext.cs">
-      <Link>Routing\DirectRouteFactoryContext.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\IDirectRouteBuilder.cs">
-      <Link>Routing\IDirectRouteBuilder.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\IDirectRouteFactory.cs">
-      <Link>Routing\IDirectRouteFactory.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\IInlineConstraintResolver.cs">
-      <Link>Routing\IInlineConstraintResolver.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\RouteEntry.cs">
-      <Link>Routing\RouteEntry.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\RouteFactoryAttribute.cs">
-      <Link>Routing\RouteFactoryAttribute.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\RouteInfoDirectRouteFactory.cs">
-      <Link>Routing\RouteInfoDirectRouteFactory.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\RouteParser.cs">
-      <Link>Routing\RouteParser.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\RoutePrecedence.cs">
-      <Link>Routing\RoutePrecedence.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\TaskHelpers.cs">
-      <Link>Common\TaskHelpers.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\TaskHelpersExtensions.cs">
-      <Link>Common\TaskHelpersExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\Constraints\AlphaRouteConstraint.cs">
-      <Link>Routing\Constraints\AlphaRouteConstraint.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\Constraints\BoolRouteConstraint.cs">
-      <Link>Routing\Constraints\BoolRouteConstraint.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\Constraints\CompoundRouteConstraint.cs">
-      <Link>Routing\Constraints\CompoundRouteConstraint.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\Constraints\DateTimeRouteConstraint.cs">
-      <Link>Routing\Constraints\DateTimeRouteConstraint.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\Constraints\DecimalRouteConstraint.cs">
-      <Link>Routing\Constraints\DecimalRouteConstraint.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\Constraints\DoubleRouteConstraint.cs">
-      <Link>Routing\Constraints\DoubleRouteConstraint.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\Constraints\FloatRouteConstraint.cs">
-      <Link>Routing\Constraints\FloatRouteConstraint.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\Constraints\GuidRouteConstraint.cs">
-      <Link>Routing\Constraints\GuidRouteConstraint.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\Constraints\IntRouteConstraint.cs">
-      <Link>Routing\Constraints\IntRouteConstraint.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\Constraints\LengthRouteConstraint.cs">
-      <Link>Routing\Constraints\LengthRouteConstraint.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\Constraints\LongRouteConstraint.cs">
-      <Link>Routing\Constraints\LongRouteConstraint.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\Constraints\MaxLengthRouteConstraint.cs">
-      <Link>Routing\Constraints\MaxLengthRouteConstraint.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\Constraints\MaxRouteConstraint.cs">
-      <Link>Routing\Constraints\MaxRouteConstraint.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\Constraints\MinLengthRouteConstraint.cs">
-      <Link>Routing\Constraints\MinLengthRouteConstraint.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\Constraints\MinRouteConstraint.cs">
-      <Link>Routing\Constraints\MinRouteConstraint.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\Constraints\RangeRouteConstraintBase.cs">
-      <Link>Routing\Constraints\RangeRouteConstraintBase.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\Constraints\RegexRouteConstraint.cs">
-      <Link>Routing\Constraints\RegexRouteConstraint.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\Constraints\OptionalRouteConstraint.cs">
-      <Link>Routing\Constraints\OptionalRouteConstraint.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\DefaultInlineConstraintResolver.cs">
-      <Link>Routing\DefaultInlineConstraintResolver.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\InlineRouteTemplateParser.cs">
-      <Link>Routing\InlineRouteTemplateParser.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\SubRouteCollection.cs">
-      <Link>Routing\SubRouteCollection.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\IRoutePrefix.cs">
-      <Link>Routing\IRoutePrefix.cs</Link>
-    </Compile>
-    <Compile Update="Properties\MvcResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MvcResources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="..\Common\Routing\PathContentSegment.cs">
-      <Link>Routing\PathContentSegment.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\PathLiteralSubsegment.cs">
-      <Link>Routing\PathLiteralSubsegment.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\PathParameterSubsegment.cs">
-      <Link>Routing\PathParameterSubsegment.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\PathSegment.cs">
-      <Link>Routing\PathSegment.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\PathSeparatorSegment.cs">
-      <Link>Routing\PathSeparatorSegment.cs</Link>
-    </Compile>
-    <Compile Include="..\Common\Routing\PathSubsegment.cs">
-      <Link>Routing\PathSubsegment.cs</Link>
-    </Compile>
-    <Compile Update="ViewTemplateUserControl.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Update="ViewTemplateUserControlOfTModel.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Update="ViewMasterPage.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Update="ViewMasterPageOfTModel.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Update="ViewPage.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Update="ViewPageOfTModel.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Update="ViewUserControl.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Update="ViewUserControlOfTModel.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\MvcResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>MvcResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <CodeAnalysisDictionary Include="..\CodeAnalysisDictionary.xml" />
-  </ItemGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\System.Web.Razor\System.Web.Razor.csproj" />
     <ProjectReference Include="..\System.Web.WebPages.Razor\System.Web.WebPages.Razor.csproj" />
-    <ProjectReference Include="..\System.Web.WebPages\System.Web.WebPages.csproj" />
   </ItemGroup>
+
   <ItemGroup>
-    <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.0.0.0" />
+    <InternalsVisibleTo Include="System.Web.Mvc.Test" />
   </ItemGroup>
-  <Target Name="AfterBuild">
-    <ItemGroup>
-      <ScriptFiles Include="JavaScript\*.js" />
-    </ItemGroup>
-    <Copy SourceFiles="@(ScriptFiles)" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" />
-  </Target>
+
+  <ItemGroup>
+    <Compile Update="Properties\MvcResources.Designer.cs">
+      <DependentUpon>MvcResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\MvcResources.resx">
+      <SubType>Designer</SubType>
+      <LastGenOutput>MvcResources.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

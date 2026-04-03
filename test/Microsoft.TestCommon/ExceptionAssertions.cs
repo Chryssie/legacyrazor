@@ -6,9 +6,6 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Web;
-#if Testing_NetStandard1_3
-using System.Web.Http;
-#endif
 
 namespace Microsoft.TestCommon
 {
@@ -467,47 +464,6 @@ namespace Microsoft.TestCommon
                         testCode,
                         paramName,
                         String.Format(CultureReplacer.DefaultCulture, "Value must be less than or equal to {0}.", maxValue), false, actualValue);
-        }
-
-#if !NETCOREAPP
-        /// <summary>
-        /// Verifies that the code throws an HttpException (or optionally any exception which derives from it).
-        /// </summary>
-        /// <param name="testCode">A delegate to the code to be tested</param>
-        /// <param name="exceptionMessage">The exception message to verify</param>
-        /// <param name="httpCode">The expected HTTP status code of the exception</param>
-        /// <param name="allowDerivedExceptions">Pass true to allow exceptions which derive from TException; pass false, otherwise</param>
-        /// <returns>The exception that was thrown, when successful</returns>
-        /// <exception cref="ThrowsException">Thrown when an exception was not thrown, or when an exception of the incorrect type is thrown</exception>
-        public static HttpException ThrowsHttpException(Action testCode, string exceptionMessage, int httpCode, bool allowDerivedExceptions = false)
-        {
-            var ex = Throws<HttpException>(testCode, exceptionMessage, allowDerivedExceptions);
-            Equal(httpCode, ex.GetHttpCode());
-            return ex;
-        }
-#endif
-
-        /// <summary>
-        /// Verifies that the code throws an InvalidEnumArgumentException (or optionally any exception which derives from it).
-        /// </summary>
-        /// <param name="testCode">A delegate to the code to be tested</param>
-        /// <param name="paramName">The name of the parameter that should throw the exception</param>
-        /// <param name="invalidValue">The expected invalid value that should appear in the message</param>
-        /// <param name="enumType">The type of the enumeration</param>
-        /// <param name="allowDerivedExceptions">Pass true to allow exceptions which derive from TException; pass false, otherwise</param>
-        /// <returns>The exception that was thrown, when successful</returns>
-        /// <exception cref="ThrowsException">Thrown when an exception was not thrown, or when an exception of the incorrect type is thrown</exception>
-        public static ArgumentException ThrowsInvalidEnumArgument(Action testCode, string paramName, int invalidValue, Type enumType, bool allowDerivedExceptions = false)
-        {
-            string message = String.Format(CultureReplacer.DefaultCulture,
-                                           "The value of argument '{0}' ({1}) is invalid for Enum type '{2}'.{3}",
-                                           paramName, invalidValue, enumType.Name, GetParameterMessage(paramName));
-
-#if Testing_NetStandard1_3 // InvalidEnumArgumentException not available in netstandard1.3.
-            return Throws<Error.InvalidEnumArgumentException>(testCode, message, allowDerivedExceptions);
-#else
-            return Throws<InvalidEnumArgumentException>(testCode, message, allowDerivedExceptions);
-#endif
         }
 
         /// <summary>
