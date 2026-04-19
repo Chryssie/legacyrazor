@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>14</LangVersion>
+    <Nullable>enable</Nullable>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+    <RootNamespace>System.Web.Mvc</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DevelopmentDependency>true</DevelopmentDependency>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="build\System.Web.Mvc.RazorGenerator.props" Pack="true" PackagePath="build" />
+    <None Include="build\System.Web.Mvc.RazorGenerator.targets" Pack="true" PackagePath="build" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" PrivateAssets="all" ExcludeAssets="runtime;contentFiles;native">
+      <IncludeAssets>compile; build; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Buffers" PrivateAssets="all" ExcludeAssets="runtime;contentFiles;native" />
+    <PackageReference Include="System.Memory" PrivateAssets="all" ExcludeAssets="runtime;contentFiles;native" />
+    <PackageReference Include="System.Numerics.Vectors" PrivateAssets="all" ExcludeAssets="runtime;contentFiles;native" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" PrivateAssets="all" ExcludeAssets="runtime;contentFiles;native" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Bcl.HashCode" PrivateAssets="all" />
+    <PackageReference Include="System.CodeDom" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\System.Web.Mvc\System.Web.Mvc.csproj" PrivateAssets="all" Private="true" />
+    <ProjectReference Include="..\System.Web.Razor\System.Web.Razor.csproj" PrivateAssets="all" Private="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Info\" />
+  </ItemGroup>
+
+  <Import Project="..\System.Web.Common\System.Web.Common.projitems" Label="Shared" />
+  <Import Project=".\Chryssie.Analyzers.MSBuild.targets" />
+
+</Project>

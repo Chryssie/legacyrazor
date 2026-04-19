@@ -25,7 +25,7 @@ namespace System.Web.Razor.Tokenizer
             {
                 throw new ArgumentNullException("source");
             }
-            Source = new TextDocumentReader(source);
+			Source = source.AsTextDocumentReader();
             Buffer = new StringBuilder();
             CurrentErrors = new List<RazorError>();
             StartSymbol();

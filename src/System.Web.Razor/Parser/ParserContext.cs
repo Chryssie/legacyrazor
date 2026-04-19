@@ -47,7 +47,7 @@ namespace System.Web.Razor.Parser
 
             CaptureOwnerTask();
 
-            Source = new TextDocumentReader(source);
+			Source = source.AsTextDocumentReader();
             CodeParser = codeParser;
             MarkupParser = markupParser;
             ActiveParser = activeParser;

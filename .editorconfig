@@ -2,7 +2,7 @@
 root = true
 
 # MS Build files as Visual Studio does not respect the `.editorconfig` whilst it automatically makes changes to these files.
-[*.{csproj,props,targets}]
+[{*.{csproj,props,targets},nuget.config}]
 
 # Indentation and spacing
 indent_size = 2

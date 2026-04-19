@@ -9,16 +9,23 @@
     <File Path="Directory.Build.targets" />
     <File Path="Directory.Packages.props" />
     <File Path="LICENSE.txt" />
+    <File Path="nuget.config" />
     <File Path="README.md" />
     <File Path="SECURITY.md" />
   </Folder>
   <Folder Name="/src/">
+    <Project Path="src/System.Web.Common/System.Web.Common.shproj" Id="2c4c0354-7724-4199-8814-fb24a3854faa" />
     <Project Path="src/System.Web.Mvc/System.Web.Mvc.csproj" />
     <Project Path="src/System.Web.Razor/System.Web.Razor.csproj" />
     <Project Path="src/System.Web.WebPages.Razor/System.Web.WebPages.Razor.csproj" />
   </Folder>
+  <Folder Name="/src/System.Web.Mvc.RazorGenerator/">
+    <Project Path="src/System.Web.Mvc.RazorGenerator/System.Web.Mvc.RazorGenerator.csproj" />
+  </Folder>
   <Folder Name="/test/">
     <Project Path="test/Microsoft.TestCommon/Microsoft.TestCommon.csproj" />
+    <Project Path="test/System.Web.Mvc.RazorGenerator.Test/System.Web.Mvc.RazorGenerator.Test.csproj" Id="da183d7e-17d9-4af4-8596-26d4a81059dc" />
+    <Project Path="test/System.Web.Mvc.RazorGenerator.TestApplication/System.Web.Mvc.RazorGenerator.TestApplication.csproj" Id="61b8f736-00cd-43e7-91ec-568409d56192" />
     <Project Path="test/System.Web.Mvc.Test/System.Web.Mvc.Test.csproj" />
     <Project Path="test/System.Web.Razor.Test/System.Web.Razor.Test.csproj" />
     <Project Path="test/System.Web.WebPages.Razor.Test/System.Web.WebPages.Razor.Test.csproj" />

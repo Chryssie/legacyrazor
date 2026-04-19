@@ -33,7 +33,10 @@ namespace System.Web.Razor.Parser
                 new WhiteSpaceRewriter(MarkupParser.BuildSpan),
                 // Collapse conditional attributes where the entire value is literal
                 new ConditionalAttributeCollapser(MarkupParser.BuildSpan),
-            };
+				// TODO: Collapse markup blocks together?
+				new MarkupCollapser(MarkupParser.BuildSpan),
+
+			};
         }
 
         internal ParserBase CodeParser { get; private set; }

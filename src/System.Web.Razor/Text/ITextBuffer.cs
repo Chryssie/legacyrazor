@@ -16,4 +16,23 @@ namespace System.Web.Razor.Text
     {
         SourceLocation Location { get; }
     }
+
+	public static class ITextDocumentExtensions
+	{
+		public static TextDocumentReader AsTextDocumentReader(this ITextDocument textDocument)
+		{
+			ArgumentNullException.ThrowIfNull(textDocument);
+
+			if (textDocument is not TextDocumentReader reader)
+				reader = new DefaultTextDocumentReader(textDocument);
+
+			return reader;
+		}
+
+		private sealed class SealedDefaultTextDocumentReader(ITextDocument textDocument) : DefaultTextDocumentReader(textDocument)
+		{
+			public override bool Equals(object obj) => (this == obj) || (obj is SealedDefaultTextDocumentReader other && this.Document.Equals(other.Document));
+			public override int GetHashCode() => this.Document.GetHashCode();
+		}
+	}
 }

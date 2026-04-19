@@ -31,4 +31,6 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <Import Project="..\System.Web.Common\System.Web.Common.projitems" Label="Shared" />
+
 </Project>

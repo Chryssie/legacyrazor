@@ -3,30 +3,38 @@
 
 using System.Configuration;
 
-namespace System.Web.WebPages.Razor.Configuration
+namespace System.Web.WebPages.Razor.Configuration;
+
+public interface IReadOnlyHostSection
 {
-    public class HostSection : ConfigurationSection
-    {
-        public static readonly string SectionName = RazorWebSectionGroup.GroupName + "/host";
+	string FactoryType { get; }
+}
+public interface IHostSection : IReadOnlyHostSection
+{
+	new string FactoryType { get; set; }
+}
 
-        private static readonly ConfigurationProperty _typeProperty =
-            new ConfigurationProperty("factoryType",
-                                      typeof(string),
-                                      null,
-                                      ConfigurationPropertyOptions.IsRequired);
+public class HostSection : ConfigurationSection, IHostSection
+{
+	public static readonly string SectionName = RazorWebSectionGroup.GroupName + "/host";
 
-        private bool _factoryTypeSet = false;
-        private string _factoryType;
+	private static readonly ConfigurationProperty _typeProperty =
+		new ConfigurationProperty("factoryType",
+								  typeof(string),
+								  null,
+								  ConfigurationPropertyOptions.IsRequired);
 
-        [ConfigurationProperty("factoryType", IsRequired = true, DefaultValue = null)]
-        public string FactoryType
-        {
-            get { return _factoryTypeSet ? _factoryType : (string)this[_typeProperty]; }
-            set
-            {
-                _factoryType = value;
-                _factoryTypeSet = true;
-            }
-        }
-    }
+	private bool _factoryTypeSet = false;
+	private string _factoryType;
+
+	[ConfigurationProperty("factoryType", IsRequired = true, DefaultValue = null)]
+	public string FactoryType
+	{
+		get { return _factoryTypeSet ? _factoryType : (string)this[_typeProperty]; }
+		set
+		{
+			_factoryType = value;
+			_factoryTypeSet = true;
+		}
+	}
 }

@@ -1,9 +1,14 @@
 ﻿// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Web.Razor.Generator;
 using System.Web.Razor.Parser;
+
+using Microsoft.CSharp;
+using Microsoft.VisualBasic;
 
 namespace System.Web.Razor
 {
@@ -36,12 +41,12 @@ namespace System.Web.Razor
         /// </summary>
         public abstract Type CodeDomProviderType { get; }
 
-        /// <summary>
-        /// Gets the RazorCodeLanguage registered for the specified file extension
-        /// </summary>
-        /// <param name="fileExtension">The extension, with or without a "."</param>
-        /// <returns>The language registered for that extension</returns>
-        public static RazorCodeLanguage GetLanguageByExtension(string fileExtension)
+		/// <summary>
+		/// Gets the RazorCodeLanguage registered for the specified file extension
+		/// </summary>
+		/// <param name="fileExtension">The extension, with or without a "."</param>
+		/// <returns>The language registered for that extension</returns>
+		public static RazorCodeLanguage GetLanguageByExtension(string fileExtension)
         {
             RazorCodeLanguage service = null;
             Languages.TryGetValue(fileExtension.TrimStart('.'), out service);

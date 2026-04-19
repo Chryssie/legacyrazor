@@ -1,0 +1,96 @@
+<Project>
+  <PropertyGroup>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <IncludeBuildOutputAsAnalyzer Condition="'$(IncludeBuildOutputAsAnalyzer)' == ''">true</IncludeBuildOutputAsAnalyzer>
+    <AnalyzerOutputPath Condition="'$(AnalyzerOutputPath)' == ''">analyzers/dotnet</AnalyzerOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GenerateNuspecDependsOn>$(GenerateNuspecDependsOn);AnalyzerOutputInPackage</GenerateNuspecDependsOn>
+  </PropertyGroup>
+  <Target Name="Analyzer_GetBuildOutputFilesWithTfm"
+          DependsOnTargets="BuiltProjectOutputGroup;DocumentationProjectOutputGroup;SatelliteDllsProjectOutputGroup;_AddPriFileToPackBuildOutput;ResolveReferences;ResolvePackageAssets;$(TargetsForTfmSpecificBuildOutput)"
+          Returns="@(BuildOutputAsAnalyzerInPackage)">
+    <ItemGroup Condition="'$(IncludeBuildOutputAsAnalyzer)' == 'true'">
+      <BuildOutputAsAnalyzerInPackage Include="@(SatelliteDllsProjectOutputGroupOutput);
+                            @(ReferenceCopyLocalPaths);
+                            @(RuntimeCopyLocalItems);
+                            @(BuiltProjectOutputGroupOutput);
+                            @(DocumentationProjectOutputGroupOutput);
+                            @(_PathToPriFile)"/>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="Analyzer_GetTfmSpecificContentForPackage"
+          DependsOnTargets="$(TargetsForTfmSpecificContentInPackage)"
+          Returns="@(Analyzer_TfmSpecificPackageFileWithRecursiveDir)">
+    <!-- The below workaround needs to be done due to msbuild bug https://github.com/Microsoft/msbuild/issues/3121 -->
+    <ItemGroup>
+      <Analyzer_TfmSpecificPackageFileWithRecursiveDir Include="@(TfmSpecificPackageFile)">
+        <NuGetRecursiveDir>%(TfmSpecificPackageFile.RecursiveDir)</NuGetRecursiveDir>
+        <BuildAction>%(TfmSpecificPackageFile.BuildAction)</BuildAction>
+      </Analyzer_TfmSpecificPackageFileWithRecursiveDir>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="Analyzer_GetDebugSymbolsWithTfm"
+          DependsOnTargets="DebugSymbolsProjectOutputGroup;$(TargetsForTfmSpecificDebugSymbolsInPackage)"
+          Returns="@(Analyzer_TargetPathsToSymbolsWithTfm)">
+    <ItemGroup Condition="'$(IncludeBuildOutputAsAnalyzer)' == 'true'">
+      <Analyzer_TargetPathsToSymbolsWithTfm Include="@(DebugSymbolsProjectOutputGroupOutput)">
+        <TargetFramework>$(TargetFramework)</TargetFramework>
+      </Analyzer_TargetPathsToSymbolsWithTfm>
+    </ItemGroup>
+    <ItemGroup>
+      <Analyzer_TargetPathsToSymbolsWithTfm Include="@(TfmSpecificDebugSymbolsFile)" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="Analyzer_WalkEachTargetPerFramework">
+    <ItemGroup>
+      <Analyzer_ProjectsWithTFM Include="$(MSBuildProjectFullPath)" AdditionalProperties="TargetFramework=%(_TargetFrameworks.Identity)" Condition="'%(_TargetFrameworks.Identity)' == 'netstandard2.0'" />
+      <Analyzer_ProjectsWithTFMNoBuild Include="$(MSBuildProjectFullPath)" AdditionalProperties="TargetFramework=%(_TargetFrameworks.Identity);BuildProjectReferences=false" Condition="'%(_TargetFrameworks.Identity)' == 'netstandard2.0'" />
+    </ItemGroup>
+    
+    <MSBuild
+      Condition="'$(IncludeBuildOutputAsAnalyzer)' == 'true'"
+      Projects="@(Analyzer_ProjectsWithTFM)"
+      Targets="Analyzer_GetBuildOutputFilesWithTfm"
+      BuildInParallel="$(BuildInParallel)">
+
+      <Output
+          TaskParameter="TargetOutputs"
+          ItemName="Analyzer_BuildOutputInPackage" />
+    </MSBuild>
+
+    <MSBuild
+      Condition="'$(TargetsForTfmSpecificContentInPackage)' != ''"
+      Projects="@(Analyzer_ProjectsWithTFM)"
+      Targets="Analyzer_GetTfmSpecificContentForPackage"
+      BuildInParallel="$(BuildInParallel)">
+
+      <Output
+          TaskParameter="TargetOutputs"
+          ItemName="Analyzer_PackageFiles"/>
+    </MSBuild>
+
+    <MSBuild
+      Condition="'$(IncludeBuildOutputAsAnalyzer)' == 'true'"
+      Projects="@(Analyzer_ProjectsWithTFM)"
+      Targets="Analyzer_GetDebugSymbolsWithTfm"
+      BuildInParallel="$(BuildInParallel)">
+
+      <Output
+          TaskParameter="TargetOutputs"
+          ItemName="Analyzer_TargetPathsToSymbols" />
+    </MSBuild>
+  </Target>
+
+  <Target Name="AnalyzerOutputInPackage" DependsOnTargets="Analyzer_WalkEachTargetPerFramework">
+    <ItemGroup>
+      <_PackageFiles Include="@(Analyzer_BuildOutputInPackage)" PackagePath="$(AnalyzerOutputPath)" />
+    </ItemGroup>
+  </Target>
+</Project>

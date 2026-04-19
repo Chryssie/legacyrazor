@@ -48,6 +48,9 @@
 
   <ItemGroup>
     <PackageReference Include="System.CodeDom" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" />
   </ItemGroup>
+
+  <Import Project="..\System.Web.Common\System.Web.Common.projitems" Label="Shared" />
 
 </Project>

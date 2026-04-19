@@ -1,0 +1,7 @@
+<Project>
+  <ItemGroup Condition="'$(EnableDefaultRazorGeneratorItems)' == 'true'">
+    <AdditionalFiles Include="@(Content->HasMetadata('Extension')->WithMetadataValue('Extension', '.cshtml'))" />
+    <AdditionalFiles Include="@(Content->HasMetadata('Extension')->WithMetadataValue('Extension', '.vbhtml'))" />
+    <AdditionalFiles Include="@(Content->HasMetadata('FileName')->HasMetadata('Extension')->WithMetadataValue('FileName', 'web')->WithMetadataValue('Extension', '.config'))" />
+  </ItemGroup>
+</Project>
