@@ -11,5 +11,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)System\ArgumentNullExceptionExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)system\runtime\compilerservices\RuntimeHelpersExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)system\runtime\compilerservices\UnsafeExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)System\Runtime\CompilerServices\" />
   </ItemGroup>
 </Project>

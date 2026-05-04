@@ -4,18 +4,16 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>14</LangVersion>
     <RootNamespace>System.Web.WebPages.Razor</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\System.Web.Configuration\System.Web.Configuration.csproj" />
     <ProjectReference Include="..\System.Web.Razor\System.Web.Razor.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <InternalsVisibleTo Include="System.Web.WebPages.Razor.Test" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="System.Configuration.ConfigurationManager" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,6 +41,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="System\Web\UI\" />
   </ItemGroup>
 
   <Import Project="..\System.Web.Common\System.Web.Common.projitems" Label="Shared" />

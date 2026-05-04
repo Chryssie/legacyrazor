@@ -7,43 +7,27 @@ using System.Web.Configuration;
 
 namespace System.Web.WebPages.Razor.Configuration;
 
-public interface IReadOnlyRazorPagesSection
+/// <summary>Provides configuration system support for the pages configuration section.</summary>
+public class RazorPagesSection : ConfigurationSection
 {
-	string PageBaseType { get; }
-	IReadOnlyNamespaceCollection Namespaces { get; }
-}
+	internal const string SectionElementName = "pages";
 
-public interface IReadOnlyRazorPagesSection<out TNamespaceCollection> : IReadOnlyRazorPagesSection
-	where TNamespaceCollection : IReadOnlyNamespaceCollection
-{
-	new TNamespaceCollection Namespaces { get; }
-}
+	private const string SectionFullName = $"{RazorWebSectionGroup.GroupElementName}/{SectionElementName}";
 
-public interface IRazorPagesSection : IReadOnlyRazorPagesSection
-{
-	new string PageBaseType { get; set; }
-	new IReadOnlyNamespaceCollection Namespaces { get; set; }
-}
+	/// <summary>Represents the name of the configuration section for Razor pages.</summary>
+	public static readonly string SectionName = SectionFullName;
 
-public interface IRazorPagesSection<TNamespaceCollection> : IRazorPagesSection, IReadOnlyRazorPagesSection<TNamespaceCollection>
-	where TNamespaceCollection : IReadOnlyNamespaceCollection
-{
-	new TNamespaceCollection Namespaces { get; set; }
-}
+	internal const string PageBaseTypeAttributeName = "pageBaseType";
+	internal const string NamespacesElementName = "namespaces";
 
-public class RazorPagesSection : ConfigurationSection, IRazorPagesSection<NamespaceCollection>
-{
-	public static readonly string SectionName = RazorWebSectionGroup.GroupName + "/pages";
-
-	private static readonly ConfigurationProperty _pageBaseTypeProperty = new(
-		"pageBaseType",
+	internal static readonly ConfigurationProperty _pageBaseTypeProperty = new(
+		PageBaseTypeAttributeName,
 		typeof(string),
 		null,
 		ConfigurationPropertyOptions.IsRequired
 	);
-
-	private static readonly ConfigurationProperty _namespacesProperty = new(
-		"namespaces",
+	internal static readonly ConfigurationProperty _namespacesProperty = new(
+		NamespacesElementName,
 		typeof(NamespaceCollection),
 		null,
 		ConfigurationPropertyOptions.IsRequired
@@ -52,34 +36,35 @@ public class RazorPagesSection : ConfigurationSection, IRazorPagesSection<Namesp
 	private bool _pageBaseTypeSet = false;
 	private bool _namespacesSet = false;
 
-	[ConfigurationProperty("pageBaseType", IsRequired = true)]
+	[SuppressMessage("Style", "IDE0032:Use auto property", Justification = "Binary compatibility.")]
+	private string _pageBaseType;
+	[SuppressMessage("Style", "IDE0032:Use auto property", Justification = "Binary compatibility.")]
+	private NamespaceCollection _namespaces;
+
+	/// <summary>Gets or sets the name of the page base type class.</summary>
+	/// <value>The name of the page base type class.</value>
+	[ConfigurationProperty(PageBaseTypeAttributeName, IsRequired = true)]
 	public string PageBaseType
 	{
-		get { return _pageBaseTypeSet ? field : (string)this[_pageBaseTypeProperty]; }
+		get => _pageBaseTypeSet ? _pageBaseType : (string)this[_pageBaseTypeProperty];
 		set
 		{
-			field = value;
+			_pageBaseType = value;
 			_pageBaseTypeSet = true;
 		}
 	}
 
-	[ConfigurationProperty("namespaces", IsRequired = true)]
+	/// <summary>Gets or sets the collection of namespaces to add to Web Pages pages in the current application.</summary>
+	/// <value>The collection of namespaces.</value>
+	[ConfigurationProperty(NamespacesElementName, IsRequired = true)]
 	[SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly", Justification = "Being able to set this property is extremely useful for third-parties who are testing components which interact with the Razor configuration system")]
 	public NamespaceCollection Namespaces
 	{
-		get { return _namespacesSet ? field : (NamespaceCollection)this[_namespacesProperty]; }
+		get => _namespacesSet ? _namespaces : (NamespaceCollection)this[_namespacesProperty];
 		set
 		{
-			field = value;
+			_namespaces = value;
 			_namespacesSet = true;
 		}
 	}
-
-	IReadOnlyNamespaceCollection IRazorPagesSection.Namespaces
-	{
-		get => ((IReadOnlyRazorPagesSection)this).Namespaces;
-		set => this.Namespaces = (NamespaceCollection)value;
-	}
-
-	IReadOnlyNamespaceCollection IReadOnlyRazorPagesSection.Namespaces => this.Namespaces;
 }

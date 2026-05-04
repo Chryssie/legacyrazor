@@ -76,14 +76,13 @@ public record class RazorContext
 		init;
 	} = true;
 
-	private MvcWebPageRazorHost? host;
-
 	[AllowNull]
 	private MvcWebPageRazorHost Host
 	{
 		get
 		{
-			return Volatile.Read(ref this.host) ?? InitHost();
+			return Volatile.Read(ref field) ?? InitHost();
+
 			MvcWebPageRazorHost InitHost()
 			{
 				var newHost = new MvcWebPageRazorHost(this.VirtualPath, this.PhysicalPath)
@@ -91,12 +90,12 @@ public record class RazorContext
 					DesignTimeMode = this.DesignTimeMode,
 				};
 
-				var host = Interlocked.CompareExchange(ref this.host, comparand: null, value: newHost);
+				var host = Interlocked.CompareExchange(ref field, comparand: null, value: newHost);
 
 				return host ?? newHost;
 			}
 		}
-		set => Volatile.Write(ref this.host, value);
+		set => Volatile.Write(ref field, value);
 	}
 
 	public CodeDomProvider CodeDomProvider

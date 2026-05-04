@@ -2,93 +2,50 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System.Configuration;
+using System.Diagnostics.CodeAnalysis;
 
 namespace System.Web.WebPages.Razor.Configuration;
 
-public interface IReadOnlyRazorWebSectionGroup
+/// <summary>Provides configuration system support for the <c>system.web.webPages.razor</c> configuration section.</summary>
+public class RazorWebSectionGroup : ConfigurationSectionGroup
 {
-	IReadOnlyHostSection Host { get; }
-	IReadOnlyRazorPagesSection Pages { get; }
-}
+	internal const string GroupElementName = "system.web.webPages.razor";
 
-public interface IReadOnlyRazorWebSectionGroup<out THostSection, out TRazorPagesSection> : IReadOnlyRazorWebSectionGroup
-	where THostSection : IReadOnlyHostSection
-	where TRazorPagesSection : IReadOnlyRazorPagesSection
-{
-	new THostSection Host { get; }
-	new TRazorPagesSection Pages { get; }
-}
-
-public interface IRazorWebSectionGroup : IReadOnlyRazorWebSectionGroup
-{
-	new IReadOnlyHostSection Host { get; set; }
-	new IReadOnlyRazorPagesSection Pages { get; set; }
-
-	IReadOnlyHostSection GetOrInitHost();
-	IReadOnlyRazorPagesSection GetOrInitPages();
-}
-
-public interface IRazorWebSectionGroup<THostSection, TRazorPagesSection> : IRazorWebSectionGroup, IReadOnlyRazorWebSectionGroup<THostSection, TRazorPagesSection>
-	where THostSection : IReadOnlyHostSection
-	where TRazorPagesSection : IReadOnlyRazorPagesSection
-{
-	new THostSection Host { get; set; }
-	new TRazorPagesSection Pages { get; set; }
-}
-
-public class RazorWebSectionGroup : ConfigurationSectionGroup, IRazorWebSectionGroup<HostSection, RazorPagesSection>
-{
-	public static readonly string GroupName = "system.web.webPages.razor";
+	/// <summary>Represents the name of the configuration section for Razor Web section. Contains the static, read-only string <c>"system.web.webPages.razor"</c>.</summary>
+	public static readonly string GroupName = GroupElementName;
 
 	// Use flags instead of null values since tests may want to set the property to null
 	private bool _hostSet = false;
 	private bool _pagesSet = false;
 
-	[ConfigurationProperty("host", IsRequired = false)]
+	[SuppressMessage("Style", "IDE0032:Use auto property", Justification = "Binary compatibility.")]
+	private HostSection _host;
+	[SuppressMessage("Style", "IDE0032:Use auto property", Justification = "Binary compatibility.")]
+	private RazorPagesSection _pages;
+
+	/// <summary>Gets or sets the <c>host</c> value for <c>system.web.webPages.razor</c> section group.</summary>
+	/// <value>The host value.</value>
+	[ConfigurationProperty(HostSection.SectionElementName, IsRequired = false)]
 	public HostSection Host
 	{
-		get { return _hostSet ? field : (HostSection)Sections["host"]; }
+		get { return _hostSet ? _host : (HostSection)Sections[HostSection.SectionElementName]; }
 		set
 		{
-			field = value;
+			_host = value;
 			_hostSet = true;
 		}
 	}
 
-	[ConfigurationProperty("pages", IsRequired = false)]
+	/// <summary>Gets or sets the value of the <c>pages</c> element for the <c>system.web.webPages.razor</c> section.</summary>
+	/// <value>The pages element value.</value>
+	[ConfigurationProperty(RazorPagesSection.SectionElementName, IsRequired = false)]
 	public RazorPagesSection Pages
 	{
-		get { return _pagesSet ? field : (RazorPagesSection)Sections["pages"]; }
+		get { return _pagesSet ? _pages : (RazorPagesSection)Sections[RazorPagesSection.SectionElementName]; }
 		set
 		{
-			field = value;
+			_pages = value;
 			_pagesSet = true;
 		}
-	}
-
-	IReadOnlyHostSection IRazorWebSectionGroup.Host
-	{
-		get => ((IReadOnlyRazorWebSectionGroup)this).Host;
-		set => this.Host = (HostSection)value;
-	}
-
-	IReadOnlyHostSection IReadOnlyRazorWebSectionGroup.Host => this.Host;
-
-	IReadOnlyRazorPagesSection IRazorWebSectionGroup.Pages
-	{
-		get => ((IReadOnlyRazorWebSectionGroup)this).Pages;
-		set => this.Pages = (RazorPagesSection)value;
-	}
-
-	IReadOnlyRazorPagesSection IReadOnlyRazorWebSectionGroup.Pages => this.Pages;
-
-	IReadOnlyHostSection IRazorWebSectionGroup.GetOrInitHost()
-	{
-		throw new NotImplementedException();
-	}
-
-	IReadOnlyRazorPagesSection IRazorWebSectionGroup.GetOrInitPages()
-	{
-		throw new NotImplementedException();
 	}
 }

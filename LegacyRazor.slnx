@@ -15,12 +15,11 @@
   </Folder>
   <Folder Name="/src/">
     <Project Path="src/System.Web.Common/System.Web.Common.shproj" Id="2c4c0354-7724-4199-8814-fb24a3854faa" />
+    <Project Path="src/System.Web.Configuration/System.Web.Configuration.csproj" Id="db80d200-a833-4910-8ed8-74f7ccfdfd41" />
+    <Project Path="src/System.Web.Mvc.RazorGenerator/System.Web.Mvc.RazorGenerator.csproj" />
     <Project Path="src/System.Web.Mvc/System.Web.Mvc.csproj" />
     <Project Path="src/System.Web.Razor/System.Web.Razor.csproj" />
     <Project Path="src/System.Web.WebPages.Razor/System.Web.WebPages.Razor.csproj" />
-  </Folder>
-  <Folder Name="/src/System.Web.Mvc.RazorGenerator/">
-    <Project Path="src/System.Web.Mvc.RazorGenerator/System.Web.Mvc.RazorGenerator.csproj" />
   </Folder>
   <Folder Name="/test/">
     <Project Path="test/Microsoft.TestCommon/Microsoft.TestCommon.csproj" />

@@ -4,6 +4,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.ComponentModel.Design;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Security;
@@ -11,6 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Web.Mvc.Razor;
 using System.Web.Razor.Parser.SyntaxTree;
+using System.Web.WebPages.Razor.Configuration;
 
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -36,17 +38,8 @@ partial class LegacyRazorGenerator
 		);
 	}
 
-	private static int attemptedLaunch = 0;
-
-	private static void LaunchDebugger()
+	private static (GeneratorSourceFile?, Diagnostic?) ComputeGeneratorSourceFile((AdditionalText, AnalyzerConfigOptionsProvider) value, CancellationToken cancellationToken = default)
 	{
-		if (Interlocked.Exchange(ref attemptedLaunch, 1) == 0)
-			Debugger.Launch();
-	}
-
-	private static ((AdditionalText, RazorContext)?, Diagnostic?) ComputeProjectItems((AdditionalText, AnalyzerConfigOptionsProvider) value, CancellationToken cancellationToken = default)
-	{
-		//LaunchDebugger();
 		var (additionalText, optionsProvider) = value;
 
 		var options = optionsProvider.GetOptions(additionalText);
@@ -75,17 +68,19 @@ partial class LegacyRazorGenerator
 		}
 
 		if (relativePath is null)
-		{
 			return (null, LegacyRazorDiagnostics.TargetPathNotProvided(additionalText.Path));
-		}
 
-		var razorContext = new RazorContext(relativePath, additionalText.Path)
+		return (additionalText.ToGeneratorSourceFile(relativePath), null);
+	}
+
+	private static ((AdditionalText, RazorContext)?, Diagnostic?) ComputeProjectItems(GeneratorSourceFile source, CancellationToken cancellationToken = default)
+	{
+		var razorContext = new RazorContext(source.RelativePath, source.Path)
 		{
 			DesignTimeMode = false,
 		};
-		return ((additionalText, razorContext), null);
+		return ((source, razorContext), null);
 	}
-
 
 	private static ((Block, RazorContext)?, ImmutableArray<Diagnostic>) ParseDocument((AdditionalText, RazorContext) item, CancellationToken cancellationToken = default)
 	{
@@ -132,7 +127,7 @@ partial class LegacyRazorGenerator
 		var result = razorContext.GenerateCode(document, rootNamespace: options.RootNamespace, cancellationToken:cancellationToken);
 
 		result.GeneratedClass.CustomAttributes.Add(new CodeAttributeDeclaration("System.Runtime.CompilerServices.CompilerGenerated"));
-		result.GeneratedClass.CustomAttributes.Add(new CodeAttributeDeclaration("System.Web.WebPages.PageVirtualPathAttribute", new CodeAttributeArgument(new CodePrimitiveExpression(razorContext.AppRelativePath))));
+		result.GeneratedClass.CustomAttributes.Add(new CodeAttributeDeclaration("System.Web.WebPages.PageVirtualPathAttribute", new CodeAttributeArgument(new CodePrimitiveExpression(ComputeAppRelativePath(razorContext.VirtualPath)))));
 
 		if (result.CompileUnit is null)
 			return (null, null);
@@ -154,5 +149,27 @@ partial class LegacyRazorGenerator
 		var source = sourceWriter.ToString();
 
 		return ((hintName, source), null);
+	}
+
+	private static string ComputeAppRelativePath(string path)
+	{
+		const string Prefix = "~/";
+
+		if (path is not null)
+		{
+			for (var i = 0; i < path.Length; i++)
+			{
+				if (path[i] is '\\' or '/')
+					continue;
+
+				var sb = new StringBuilder(Prefix.Length + (path.Length - i)).Append(Prefix.Length).Append(path, i, path.Length - i);
+
+				sb.Replace('\\', '/', Prefix.Length, sb.Length - 2);
+
+				return sb.ToString();
+			}
+		}
+
+		return Prefix;
 	}
 }

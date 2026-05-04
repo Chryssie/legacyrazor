@@ -35,6 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Chryssie.Text.Rune\Chryssie.Text.Rune.csproj" />
     <ProjectReference Include="..\System.Web.Mvc\System.Web.Mvc.csproj" PrivateAssets="all" Private="true" />
     <ProjectReference Include="..\System.Web.Razor\System.Web.Razor.csproj" PrivateAssets="all" Private="true" />
   </ItemGroup>
@@ -44,6 +45,7 @@
   </ItemGroup>
 
   <Import Project="..\System.Web.Common\System.Web.Common.projitems" Label="Shared" />
+
   <Import Project=".\Chryssie.Analyzers.MSBuild.targets" />
 
 </Project>

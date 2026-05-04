@@ -13,8 +13,10 @@ public partial class LegacyRazorGenerator : IIncrementalGenerator
 {
 	public void Initialize(IncrementalGeneratorInitializationContext context)
 	{
+		var additionalTexts = context.AdditionalTextsProvider;
+		var analyzerConfigOptionsProvider = context.AnalyzerConfigOptionsProvider;
 #if DEBUG
-		var paths = context.AdditionalTextsProvider.Select((at, ct) => at.Path)
+		var paths = additionalTexts.Select((at, ct) => at.Path)
 			.Collect().Select((p, ct) =>
 			{
 #pragma warning disable RS1035 // Do not use APIs banned for analyzers // Should be okay for new line and also this is only for debugging.
@@ -34,15 +36,23 @@ public partial class LegacyRazorGenerator : IIncrementalGenerator
 		context.RegisterSourceOutput(paths, static (context, paths) => context.AddSource("_paths_", paths));
 #endif
 
-		var legacyRazorGeneratorOptions = context.AnalyzerConfigOptionsProvider
+		var legacyRazorGeneratorOptions = analyzerConfigOptionsProvider
 			.Combine(context.ParseOptionsProvider)
 			.Select(ComputeLegacyRazorSourceGeneratorOptions)
 			.ReportDiagnostics(context);
 
-		var sourceItems = context.AdditionalTextsProvider
+		var configurationFiles = additionalTexts
+			.Where(s => s.Path is { } path && string.Equals(Path.GetFileName(path), "web.config", StringComparison.OrdinalIgnoreCase))
+			.Combine(analyzerConfigOptionsProvider)
+			.Select(ComputeGeneratorSourceFile)
+			;
+
+		var sourceItems = additionalTexts
 			.Where(s => s.Path is { } path && RazorCodeLanguage.Languages.ContainsKey(Path.GetExtension(path).TrimStart('.')))
-			.Combine(context.AnalyzerConfigOptionsProvider)
-			.Select(ComputeProjectItems)
+			.Combine(analyzerConfigOptionsProvider)
+			.Select(ComputeGeneratorSourceFile)
+			.ReportDiagnostics(context)
+			.Select(ComputeProjectItems!)
 			.ReportDiagnostics(context)
 			.WhereNotNull();
 
